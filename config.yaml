@@ -1,0 +1,26 @@
+# Default configuration for refcheck. All of these can be overridden with
+# CLI flags (see `python -m refcheck.cli run --help`).
+
+input_dir: ./pdfs
+output_dir: ./output
+cache_dir: ./.refcheck_cache
+
+grobid_url: http://localhost:8070
+
+verify_sources:
+  - dblp
+  - semanticscholar
+  - crossref
+
+# Optional: raises your Semantic Scholar rate limit. Leave blank to use the
+# unauthenticated (slower, more 429-prone) pool. Can also be set via the
+# S2_API_KEY environment variable.
+s2_api_key: ""
+
+# Used for Crossref's "polite pool" (higher reliability/rate limits). This
+# is just an identifying contact header Crossref recommends including, not
+# sensitive -- change or blank it out if you'd rather not send it.
+crossref_mailto: "920730325seek@gmail.com"
+
+verify_workers: 4
+per_source_limit: 5

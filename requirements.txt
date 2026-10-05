@@ -1,0 +1,5 @@
+requests>=2.31
+lxml>=5.0
+rapidfuzz>=3.6
+tqdm>=4.66
+PyYAML>=6.0

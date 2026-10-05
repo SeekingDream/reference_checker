@@ -1,0 +1,18 @@
+services:
+  grobid:
+    # The "-crf" variant skips GROBID's deep-learning models (used for
+    # figure/table extraction, which we don't need) and only loads the
+    # CRF (Wapiti) models -- including the citation/reference parsing model
+    # we actually rely on. Requires a Docker VM with >=3GB memory (the
+    # Wapiti native models need headroom beyond the JVM heap itself). If
+    # you give Docker even more memory you can switch to
+    # `lfoppiano/grobid:0.9.1-full` for marginally better extraction on
+    # hard cases (e.g. figure-embedded reference lists).
+    image: lfoppiano/grobid:0.9.1-crf
+    container_name: refcheck-grobid
+    ports:
+      - "8070:8070"
+    environment:
+      - JAVA_OPTS=-Xmx2560m
+    ulimits:
+      core: 0
